@@ -2,29 +2,30 @@ package com.example.kmpmetro
 
 import android.app.Application
 import android.util.Log
+import com.example.data.DataModuleGraph
+import com.example.data.SampleDataProvider
 import dev.zacsweers.metro.DependencyGraph
-import dev.zacsweers.metro.Inject
-import dev.zacsweers.metro.Provides
 import dev.zacsweers.metro.createGraph
 import kotlinx.coroutines.runBlocking
 
 class ExampleApplication : Application() {
 
+    companion object {
+        lateinit var appGraph: AppGraph
+    }
+
     override fun onCreate() {
         super.onCreate()
-
-        val appGraph = createGraph<AppGraph>()
+        appGraph = createGraph<AppGraph>()
         runBlocking {
-            val data = appGraph.sampleDataProvider.getData()
-            Log.v("AdamTest", "sample data was $data")
+            appGraph.sampleDataProvider.getData().let {
+                Log.v("AdamTest", "gotData $it")
+            }
         }
     }
 }
 
 @DependencyGraph
-interface AppGraph {
-    @Provides
-    fun getSampleData(): List<SampleDataCore> = sampleData
-
+interface AppGraph: DataModuleGraph {
     val sampleDataProvider: SampleDataProvider
 }

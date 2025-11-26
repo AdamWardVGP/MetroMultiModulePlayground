@@ -1,4 +1,5 @@
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.data.SampleDataProvider
 import kotlinx.coroutines.flow.Flow
@@ -7,10 +8,10 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 interface DetailViewModel {
-    val sampleDataFlow: Flow<SampleDataUI?>
+    val sampleDataFlow: Flow<DetailUI?>
 }
 
-data class SampleDataUI(val id: Int, val name: String, val description: String)
+data class DetailUI(val name: String, val description: String)
 
 //@Inject
 class DetailViewModelImpl(
@@ -18,14 +19,21 @@ class DetailViewModelImpl(
     val selectedItem: Int
 ): ViewModel(), DetailViewModel {
 
-    private val _sampleDataFlow: MutableStateFlow<SampleDataUI?> = MutableStateFlow(null)
-    override val sampleDataFlow: Flow<SampleDataUI?>
+    class Factory(val sampleDataProvider: SampleDataProvider,
+                  val selectedItem: Int) : ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            return DetailViewModelImpl(sampleDataProvider, selectedItem) as T
+        }
+    }
+
+    private val _sampleDataFlow: MutableStateFlow<DetailUI?> = MutableStateFlow(null)
+    override val sampleDataFlow: Flow<DetailUI?>
         get() = _sampleDataFlow
 
     init {
         viewModelScope.launch {
             val result = sampleDataProvider.getData().firstOrNull { it.id == selectedItem }?.let {
-                SampleDataUI(it.id, it.name, it.description)
+                DetailUI(name = it.name, description = it.description)
             }
             _sampleDataFlow.update { result }
         }

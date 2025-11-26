@@ -3,7 +3,7 @@
 package com.example.homelist
 
 import DetailViewModel
-import SampleDataUI
+import DetailUI
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -67,8 +67,8 @@ fun DetailScreen(
 fun PreviewHomeScreen() {
     DetailScreen(
         detailViewModel = object : DetailViewModel {
-            override val sampleDataFlow: Flow<SampleDataUI>
-                get() = flowOf(SampleDataUI(1, "Name 1", "Description 1"),)
+            override val sampleDataFlow: Flow<DetailUI>
+                get() = flowOf(DetailUI("Name 1", "Description 1"),)
         },
         onBackAction = {}
     )
