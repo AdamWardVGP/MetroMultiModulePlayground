@@ -42,10 +42,10 @@ class MainActivity : ComponentActivity() {
             } else {
                 DetailScreen(
                     detailViewModel = viewModel(
+                        key = selectedItem?.id?.toString(),
                         factory = DetailViewModelImpl.Factory(
                             ExampleApplication.appGraph.sampleDataProvider,
                             selectedItem = selectedItem!!.id
-
                         )
                     ),
                     onBackAction ={

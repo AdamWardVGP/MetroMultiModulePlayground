@@ -3,7 +3,6 @@
 package com.example.homelist
 
 import DetailViewModel
-import DetailUI
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -21,9 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun DetailScreen(
@@ -60,16 +56,4 @@ fun DetailScreen(
         }
     }
 
-}
-
-@Preview
-@Composable
-fun PreviewHomeScreen() {
-    DetailScreen(
-        detailViewModel = object : DetailViewModel {
-            override val sampleDataFlow: Flow<DetailUI>
-                get() = flowOf(DetailUI("Name 1", "Description 1"),)
-        },
-        onBackAction = {}
-    )
 }
