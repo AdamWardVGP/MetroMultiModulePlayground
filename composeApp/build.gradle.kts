@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-//    alias(libs.plugins.metro)
+    alias(libs.plugins.metro)
 }
 
 kotlin {
@@ -31,6 +31,9 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
             implementation(projects.shared)
+            implementation(project(":data"))
+            implementation(project(":features:homeList"))
+            implementation(project(":features:details"))
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

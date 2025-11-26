@@ -3,28 +3,31 @@ import androidx.lifecycle.viewModelScope
 import com.example.data.SampleDataProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-interface HomeViewModel {
-    val sampleDataFlow: Flow<List<SampleDataUI>>
+interface DetailViewModel {
+    val sampleDataFlow: Flow<SampleDataUI?>
 }
 
 data class SampleDataUI(val id: Int, val name: String, val description: String)
 
 //@Inject
-class HomeViewModelImpl(
+class DetailViewModelImpl(
     sampleDataProvider: SampleDataProvider,
-): ViewModel(), HomeViewModel {
+    val selectedItem: Int
+): ViewModel(), DetailViewModel {
 
-    private val _sampleDataFlow: MutableStateFlow<List<SampleDataUI>> = MutableStateFlow(emptyList())
-    override val sampleDataFlow: Flow<List<SampleDataUI>>
+    private val _sampleDataFlow: MutableStateFlow<SampleDataUI?> = MutableStateFlow(null)
+    override val sampleDataFlow: Flow<SampleDataUI?>
         get() = _sampleDataFlow
 
     init {
         viewModelScope.launch {
-            _sampleDataFlow.value = sampleDataProvider.getData().map {
+            val result = sampleDataProvider.getData().firstOrNull { it.id == selectedItem }?.let {
                 SampleDataUI(it.id, it.name, it.description)
             }
+            _sampleDataFlow.update { result }
         }
     }
 }
