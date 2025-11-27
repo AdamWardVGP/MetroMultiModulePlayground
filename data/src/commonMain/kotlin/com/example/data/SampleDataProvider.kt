@@ -1,6 +1,8 @@
 package com.example.data
 
 import com.example.data.models.SampleDataCore
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesBinding
 import dev.zacsweers.metro.Inject
 
 fun interface SampleDataProvider {
@@ -8,6 +10,7 @@ fun interface SampleDataProvider {
 }
 
 @Inject
+@ContributesBinding(AppScope::class)
 class RealSampleDataProvider(): SampleDataProvider {
     override suspend fun getData(): List<SampleDataCore> {
         return listOf(
