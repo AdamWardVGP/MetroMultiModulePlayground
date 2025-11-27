@@ -1,21 +1,29 @@
 package com.example.kmpmetro
 
-import DetailViewModelImpl
+import HomeViewModel
 import HomeViewModelImpl
 import SampleDataUI
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.data.RealSampleDataProvider
-import com.example.homelist.DetailScreen
+import com.example.detail.DetailScreen
+import com.example.detail.DetailUI
+import com.example.detail.DetailViewModel
+import com.example.detail.DetailViewModelImpl
 import com.example.homelist.HomeScreen
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 class MainActivity : ComponentActivity() {
 
@@ -26,7 +34,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            var selectedItem by rememberSaveable { mutableStateOf<SampleDataUI?>(null) }
+            var selectedItem by remember { mutableStateOf<SampleDataUI?>(null) }
             if(selectedItem == null) {
 
                 HomeScreen(
@@ -56,4 +64,36 @@ class MainActivity : ComponentActivity() {
 
         }
     }
+}
+
+@Preview
+@Composable
+fun PreviewDetailScreen() {
+    MaterialTheme {
+        DetailScreen(
+            detailViewModel = object : DetailViewModel {
+                override val sampleDataFlow: Flow<DetailUI>
+                    get() = flowOf(DetailUI("Name 1", "Description 1"),)
+            },
+            onBackAction = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+fun PreviewHomeScreen() {
+    HomeScreen(
+        homeViewModel = object : HomeViewModel {
+            override val sampleDataFlow: Flow<List<SampleDataUI>>
+                get() = flowOf(listOf(
+                    SampleDataUI(1, "Name 1", "Description 1"),
+                    SampleDataUI(2, "Name 2", "Description 2"),
+                    SampleDataUI(3, "Name 3", "Description 3"),
+                    SampleDataUI(4, "Name 4", "Description 4"),
+                ))
+
+        },
+        onRowItemClick = {}
+    )
 }

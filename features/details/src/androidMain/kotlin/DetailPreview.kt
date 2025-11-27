@@ -1,6 +1,8 @@
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.homelist.DetailScreen
+import com.example.detail.DetailScreen
+import com.example.detail.DetailUI
+import com.example.detail.DetailViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
