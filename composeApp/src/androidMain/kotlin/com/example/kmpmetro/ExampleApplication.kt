@@ -26,6 +26,4 @@ class ExampleApplication : Application() {
 }
 
 @DependencyGraph(scope = AppScope::class)
-interface AppGraph {
-    val sampleDataProvider: SampleDataProvider
-}
+interface AppGraph
