@@ -26,4 +26,8 @@ class ExampleApplication : Application() {
 }
 
 @DependencyGraph(scope = AppScope::class)
-interface AppGraph
+interface AppGraph {
+    //TODO We cam compile without this property? why? seems like the plugin probably generates this
+    // behind the scenes, but the IDE doesn't see it.
+    val sampleDataProvider: SampleDataProvider
+}
