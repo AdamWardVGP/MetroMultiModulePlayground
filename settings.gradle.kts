@@ -29,7 +29,8 @@ dependencyResolutionManagement {
 }
 
 include(":composeApp")
-include(":shared")
-include(":data")
+
 include(":features:homeList")
 include(":features:details")
+
+include(":data")
