@@ -28,9 +28,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun DetailScreen(
@@ -98,16 +95,4 @@ fun DetailScreen(
         }
     }
 
-}
-
-@Preview
-@Composable
-fun PreviewDetailScreen() {
-    DetailScreen(
-        detailViewModel = object : DetailViewModel {
-            override val sampleDataFlow: Flow<DetailUI?>
-                get() = flowOf(DetailUI("Name 1", "Description 1"))
-        },
-        onBackAction = {}
-    )
 }

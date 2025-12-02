@@ -26,9 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun HomeScreen(
@@ -37,7 +34,6 @@ fun HomeScreen(
 ) {
 
     val sampleData by homeViewModel.sampleDataFlow.collectAsStateWithLifecycle(initialValue = emptyList())
-
 
     Scaffold(
         topBar = {
@@ -96,22 +92,4 @@ fun ItemRow(sampleDataUI: SampleDataUI, onItemRowClick: (SampleDataUI) -> Unit) 
                 modifier = Modifier.padding(16.dp))
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewHomeScreen() {
-    HomeScreen(
-        homeViewModel = object : HomeViewModel {
-            override val sampleDataFlow: Flow<List<SampleDataUI>>
-                get() = flowOf(listOf(
-                    SampleDataUI(1, "Name 1", "Description 1"),
-                    SampleDataUI(2, "Name 2", "Description 2"),
-                    SampleDataUI(3, "Name 3", "Description 3"),
-                    SampleDataUI(4, "Name 4", "Description 4"),
-                ))
-
-        },
-        onRowItemClick = {}
-    )
 }

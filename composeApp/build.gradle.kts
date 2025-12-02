@@ -32,6 +32,9 @@ kotlin {
             implementation(project(":data"))
             implementation(project(":features:homeList"))
             implementation(project(":features:details"))
+
+            implementation(libs.metrox.viewmodel)
+            implementation(libs.metrox.android)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

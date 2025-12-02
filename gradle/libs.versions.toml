@@ -1,7 +1,7 @@
 [versions]
 agp = "8.13.1"
 android-compileSdk = "36"
-android-minSdk = "24"
+android-minSdk = "28"
 android-targetSdk = "36"
 androidx-activity = "1.11.0"
 androidx-appcompat = "1.7.1"
@@ -13,7 +13,7 @@ composeMultiplatform = "1.9.1"
 junit = "4.13.2"
 kotlin = "2.2.20"
 materialIcons = "1.7.8"
-metro = "0.7.7"
+metro = "0.8.0"
 kotlinStdlib = "2.2.20"
 runner = "1.5.2"
 core = "1.5.0"
@@ -31,6 +31,8 @@ androidx-lifecycle-viewmodelCompose = { module = "org.jetbrains.androidx.lifecyc
 androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "materialIcons" }
 metro-runtime = { module = "dev.zacsweers.metro:metro-runtime", version.ref = "metro" }
+metrox-android = { module = "dev.zacsweers.metro:metrox-android", version.ref = "metro" }
+metrox-viewmodel = { module = "dev.zacsweers.metro:metrox-viewmodel-compose", version.ref = "metro" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlinStdlib" }
 androidx-runner = { group = "androidx.test", name = "runner", version.ref = "runner" }
 androidx-core = { group = "androidx.test", name = "core", version.ref = "core" }

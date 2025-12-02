@@ -4,17 +4,16 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.androidLint)
+    alias(libs.plugins.metro)
 }
 
 kotlin {
 
-    // Target declarations - add or remove as needed below. These define
-    // which platforms this KMP module supports.
-    // See: https://kotlinlang.org/docs/multiplatform-discover-project.html#targets
+
     androidLibrary {
         namespace = "com.example.homelist"
         compileSdk = 36
-        minSdk = 24
+        minSdk = 28
 
         withHostTestBuilder {
         }
@@ -72,10 +71,13 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
-            implementation(libs.kotlin.stdlib)
-            implementation(libs.androidx.lifecycle.viewmodelCompose)
-            implementation(project(":data"))
             implementation(libs.androidx.compose.material.icons)
+            implementation(libs.kotlin.stdlib)
+
+            implementation(project(":data"))
+
+            implementation(libs.metrox.viewmodel)
+            implementation(libs.metrox.android)
         }
 
         commonTest {

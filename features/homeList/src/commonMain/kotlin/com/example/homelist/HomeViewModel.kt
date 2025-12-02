@@ -1,7 +1,11 @@
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.data.SampleDataProvider
+import dev.zacsweers.metro.AppScope
+import dev.zacsweers.metro.ContributesIntoMap
+import dev.zacsweers.metro.Inject
+import dev.zacsweers.metro.binding
+import dev.zacsweers.metrox.viewmodel.ViewModelKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -12,16 +16,12 @@ interface HomeViewModel {
 
 data class SampleDataUI(val id: Int, val name: String, val description: String)
 
-//@Inject
+@Inject
+@ViewModelKey(HomeViewModelImpl::class)
+@ContributesIntoMap(AppScope::class, binding = binding<ViewModel>())
 class HomeViewModelImpl(
     sampleDataProvider: SampleDataProvider,
 ): ViewModel(), HomeViewModel {
-
-    class Factory(val sampleDataProvider: SampleDataProvider) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return HomeViewModelImpl(sampleDataProvider) as T
-        }
-    }
 
     private val _sampleDataFlow: MutableStateFlow<List<SampleDataUI>> = MutableStateFlow(emptyList())
     override val sampleDataFlow: Flow<List<SampleDataUI>>
