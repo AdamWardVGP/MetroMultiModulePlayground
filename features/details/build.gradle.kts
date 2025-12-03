@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.androidLint)
     alias(libs.plugins.metro)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {
@@ -78,6 +79,9 @@ kotlin {
 
             implementation(libs.metrox.viewmodel)
             implementation(libs.metrox.android)
+
+            implementation(libs.androidx.navigation.compose)
+            implementation(libs.kotlinx.serialization.json)
         }
 
         commonTest {

@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kotlinxSerialization)
     alias(libs.plugins.metro)
 }
 
@@ -32,6 +33,8 @@ kotlin {
             implementation(project(":data"))
             implementation(project(":features:homeList"))
             implementation(project(":features:details"))
+            implementation(libs.androidx.navigation.compose)
+            implementation(libs.kotlinx.serialization.json)
 
             implementation(libs.metrox.viewmodel)
             implementation(libs.metrox.android)

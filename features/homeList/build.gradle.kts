@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.androidLint)
     alias(libs.plugins.metro)
+    alias(libs.plugins.kotlinxSerialization)
 }
 
 kotlin {

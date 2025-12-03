@@ -9,10 +9,13 @@ import dev.zacsweers.metrox.viewmodel.ViewModelKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
 
 interface HomeViewModel {
     val sampleDataFlow: Flow<List<SampleDataUI>>
 }
+
+@Serializable object HomeRoute
 
 data class SampleDataUI(val id: Int, val name: String, val description: String)
 
