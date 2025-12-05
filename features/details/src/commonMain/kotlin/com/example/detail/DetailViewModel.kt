@@ -36,7 +36,7 @@ class DetailViewModelImpl(
 
     val selectedItem: Int = savedStateHandle.toRoute<DetailRoute>().id
     @AssistedFactory
-    @ViewModelAssistedFactoryKey(Factory::class)
+    @ViewModelAssistedFactoryKey(DetailViewModelImpl::class)
     @ContributesIntoMap(AppScope::class)
     interface Factory : ViewModelAssistedFactory {
         override fun create(extras: CreationExtras): ViewModel {
