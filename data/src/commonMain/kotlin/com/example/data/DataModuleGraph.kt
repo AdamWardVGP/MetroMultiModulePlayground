@@ -4,11 +4,14 @@ import com.example.data.models.SampleDataCore
 import dev.zacsweers.metro.AppScope
 import dev.zacsweers.metro.ContributesTo
 import dev.zacsweers.metro.Provides
+import dev.zacsweers.metro.SingleIn
 
 
 @ContributesTo(AppScope::class)
 interface DataModuleGraph {
-    @Provides fun getThirdPartyData() : List<SampleDataCore> = listOf(
+    @Provides
+    @SingleIn(AppScope::class)
+    fun getThirdPartyData() : List<SampleDataCore> = listOf(
     SampleDataCore(1, "Name 1", "Description 1"),
     SampleDataCore(2, "Name 2", "Description 2"),
     SampleDataCore(3, "Name 3", "Description 3"),
